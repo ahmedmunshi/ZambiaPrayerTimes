@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+
+{% block title %}Zambia Prayer Times - Home{% endblock %}
+
+{% block extra_head %}
+<style>
+    .countdown-container {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .countdown-value {
+        font-size: 2.5rem;
+        font-weight: bold;
+        line-height: 1;
+    }
+    .countdown-label {
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="mb-8">
+    <!-- Date Display -->
+    <div class="text-center mb-6">
+        <h1 class="text-3xl font-bold text-gray-800">{{ date.strftime('%A, %B %d, %Y') }}</h1>
+        <p class="text-lg text-gray-600">
+            {% if hijri_date %}
+            {{ hijri_date.day }} {{ hijri_date.month_name }} {{ hijri_date.year }} AH
+            {% else %}
+            Hijri Date
+            {% endif %}
+        </p>
+    </div>
+
+    <!-- Mosque Info -->
+    {% if mosque %}
+    <div class="text-center mb-6">
+        <h2 class="text-2xl font-bold text-blue-800">{{ mosque.name }}</h2>
+        <p class="text-gray-600">{{ mosque.address }}</p>
+        <a href="/mosque/{{ mosque.id }}" class="text-blue-600 hover:underline">View Mosque Details</a>
+    </div>
+    {% endif %}
+
+    <!-- Next Prayer Countdown -->
+    {% if next_prayer %}
+    <div class="bg-gradient-blue text-white p-6 rounded-lg shadow-lg mb-8">
+        <div class="text-center mb-4">
+            <h2 class="text-xl font-bold">Next Prayer</h2>
+            <div class="text-3xl font-bold mt-2">{{ next_prayer.name }}</div>
+            <div class="flex justify-center mt-1">
+                <span class="text-2xl">{{ next_prayer.time }}</span>
+                {% if next_prayer.iqamah %}
+                <span class="mx-2">•</span>
+                <span class="text-2xl">
+                    Iqamah: {{ next_prayer.iqamah }}
+                </span>
+                {% endif %}
+            </div>
+            {% if next_prayer.tomorrow %}
+            <div class="text-sm text-blue-200 mt-1">(Tomorrow)</div>
+            {% endif %}
+        </div>
+        
+        {% if countdown %}
+        <div class="countdown-container p-4 flex justify-center space-x-4" 
+             {% if countdown.total_seconds %}data-total-seconds="{{ countdown.total_seconds }}"{% endif %}>
+            <div class="text-center">
+                <div class="countdown-value" id="countdown-hours">{{ countdown.hours }}</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="text-center">
+                <div class="countdown-value" id="countdown-minutes">{{ countdown.minutes }}</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="text-center">
+                <div class="countdown-value" id="countdown-seconds">{{ countdown.seconds }}</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    <!-- Today's Prayer Times -->
+    <div class="bg-white rounded-lg shadow-lg p-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">Today's Prayer Times</h2>
+        
+        {% if prayer_times %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {% for name, key in [('Fajr', 'fajr'), ('Sunrise', 'sunrise'), ('Dhuhr', 'dhuhr'), ('Asr', 'asr'), ('Maghrib', 'maghrib'), ('Isha', 'isha')] %}
+                {% if key in prayer_times %}
+                <div class="prayer-card bg-blue-50 rounded-lg p-4 shadow text-center">
+                    <h3 class="text-xl font-bold text-blue-800">{{ name }}</h3>
+                    {% if key == 'sunrise' %}
+                        <div class="text-2xl mt-2">{{ prayer_times[key] }}</div>
+                    {% else %}
+                        <div class="text-2xl mt-2">{{ prayer_times[key].time }}</div>
+                        {% if prayer_times[key].iqamah %}
+                        <div class="text-lg text-gray-600">Iqamah: {{ prayer_times[key].iqamah }}</div>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center text-gray-600">
+            <p>Prayer times not available for today.</p>
+        </div>
+        {% endif %}
+        
+        <div class="mt-6 text-center">
+            <a href="/schedule" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition">
+                View Full Schedule
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Countdown timer functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check if countdown elements exist
+        const hoursElement = document.getElementById('countdown-hours');
+        const minutesElement = document.getElementById('countdown-minutes');
+        const secondsElement = document.getElementById('countdown-seconds');
+        const countdownContainer = document.querySelector('.countdown-container');
+        
+        if (!hoursElement || !minutesElement || !secondsElement || !countdownContainer) return;
+        
+        // Get initial total seconds from data attribute
+        let totalSeconds = parseInt(countdownContainer.dataset.totalSeconds || '0', 10);
+        
+        // Update countdown every second
+        const countdownInterval = setInterval(function() {
+            if (totalSeconds <= 0) {
+                // Reload page when countdown reaches zero
+                clearInterval(countdownInterval);
+                location.reload();
+                return;
+            }
+            
+            totalSeconds -= 1;
+            
+            // Calculate hours, minutes, seconds
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = Math.floor(totalSeconds % 60);
+            
+            // Update display
+            hoursElement.textContent = hours.toString().padStart(2, '0');
+            minutesElement.textContent = minutes.toString().padStart(2, '0');
+            secondsElement.textContent = seconds.toString().padStart(2, '0');
+        }, 1000);
+    });
+</script>
+{% endblock %} 

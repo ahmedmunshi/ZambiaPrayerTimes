@@ -1,0 +1,168 @@
+{
+  "mosque_id": "mecca-islamic-center",
+  "name": "Mecca Islamic Center",
+  "address": "123 Example St, Lusaka, Zambia",
+  "prayer_times": {
+    "2025-03-03": {
+      "fajr": {
+        "time": "5:45",
+        "iqamah": "5:55"
+      },
+      "sunrise": "6:52",
+      "dhuhr": {
+        "time": "12:30",
+        "iqamah": "12:40"
+      },
+      "asr": {
+        "time": "4:30",
+        "iqamah": "4:40"
+      },
+      "maghrib": {
+        "time": "6:09",
+        "iqamah": "6:12"
+      },
+      "isha": {
+        "time": "7:28",
+        "iqamah": "7:38"
+      }
+    },
+    "2025-03-04": {
+      "fajr": {
+        "time": "5:46",
+        "iqamah": "5:56"
+      },
+      "sunrise": "6:52",
+      "dhuhr": {
+        "time": "12:30",
+        "iqamah": "12:40"
+      },
+      "asr": {
+        "time": "4:30",
+        "iqamah": "4:40"
+      },
+      "maghrib": {
+        "time": "6:09",
+        "iqamah": "6:12"
+      },
+      "isha": {
+        "time": "7:29",
+        "iqamah": "7:39"
+      }
+    },
+    "2025-03-05": {
+      "fajr": {
+        "time": "5:46",
+        "iqamah": "5:56"
+      },
+      "sunrise": "6:53",
+      "dhuhr": {
+        "time": "12:31",
+        "iqamah": "12:41"
+      },
+      "asr": {
+        "time": "4:31",
+        "iqamah": "4:41"
+      },
+      "maghrib": {
+        "time": "6:10",
+        "iqamah": "6:13"
+      },
+      "isha": {
+        "time": "7:29",
+        "iqamah": "7:39"
+      }
+    },
+    "2025-03-06": {
+      "fajr": {
+        "time": "5:47",
+        "iqamah": "5:57"
+      },
+      "sunrise": "6:53",
+      "dhuhr": {
+        "time": "12:31",
+        "iqamah": "12:41"
+      },
+      "asr": {
+        "time": "4:31",
+        "iqamah": "4:41"
+      },
+      "maghrib": {
+        "time": "6:10",
+        "iqamah": "6:13"
+      },
+      "isha": {
+        "time": "7:30",
+        "iqamah": "7:40"
+      }
+    },
+    "2025-03-07": {
+      "fajr": {
+        "time": "5:47",
+        "iqamah": "5:57"
+      },
+      "sunrise": "6:53",
+      "dhuhr": {
+        "time": "12:31",
+        "iqamah": "12:41"
+      },
+      "asr": {
+        "time": "4:31",
+        "iqamah": "4:41"
+      },
+      "maghrib": {
+        "time": "6:10",
+        "iqamah": "6:13"
+      },
+      "isha": {
+        "time": "7:30",
+        "iqamah": "7:40"
+      }
+    },
+    "2025-03-08": {
+      "fajr": {
+        "time": "5:48",
+        "iqamah": "5:58"
+      },
+      "sunrise": "6:54",
+      "dhuhr": {
+        "time": "12:32",
+        "iqamah": "12:42"
+      },
+      "asr": {
+        "time": "4:32",
+        "iqamah": "4:42"
+      },
+      "maghrib": {
+        "time": "6:11",
+        "iqamah": "6:14"
+      },
+      "isha": {
+        "time": "7:31",
+        "iqamah": "7:41"
+      }
+    },
+    "2025-03-09": {
+      "fajr": {
+        "time": "5:48",
+        "iqamah": "5:58"
+      },
+      "sunrise": "6:54",
+      "dhuhr": {
+        "time": "12:32",
+        "iqamah": "12:42"
+      },
+      "asr": {
+        "time": "4:32",
+        "iqamah": "4:42"
+      },
+      "maghrib": {
+        "time": "6:11",
+        "iqamah": "6:14"
+      },
+      "isha": {
+        "time": "7:31",
+        "iqamah": "7:41"
+      }
+    }
+  }
+}

@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% block title %}Weekly Prayer Schedule - {{ mosque.name }}{% endblock %}
+
+{% block extra_head %}
+<style>
+    .date-nav::-webkit-scrollbar {
+        height: 8px;
+    }
+    .date-nav::-webkit-scrollbar-thumb {
+        background-color: rgba(59, 130, 246, 0.5);
+        border-radius: 4px;
+    }
+    .date-nav::-webkit-scrollbar-track {
+        background-color: rgba(219, 234, 254, 0.3);
+        border-radius: 4px;
+    }
+    .date-tab {
+        transition: all 0.2s ease;
+    }
+    .date-tab.active {
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="mb-8">
+    <!-- Mosque Info -->
+    {% if mosque %}
+    <div class="text-center mb-6">
+        <h1 class="text-3xl font-bold text-gray-800">{{ mosque.name }}</h1>
+        <p class="text-gray-600">Weekly Prayer Schedule</p>
+    </div>
+    {% else %}
+    <div class="text-center mb-6">
+        <h1 class="text-3xl font-bold text-gray-800">Weekly Prayer Schedule</h1>
+        <p class="text-gray-600">No mosque selected</p>
+    </div>
+    {% endif %}
+
+    <!-- Date Navigation -->
+    <div class="date-nav mb-6 overflow-x-auto pb-2">
+        <div class="flex space-x-2 min-w-max">
+            {% for day in dates %}
+            <a href="#date-{{ day.date.strftime('%Y-%m-%d') }}" 
+               class="date-tab px-4 py-2 rounded-lg {% if loop.index0 == 0 %}active text-white{% else %}bg-white text-gray-800 hover:bg-blue-50{% endif %} shadow-sm"
+               onclick="activateTab(this, '{{ day.date.strftime('%Y-%m-%d') }}'); return false;">
+                <div class="text-sm font-medium">{{ day.date.strftime('%a') }}</div>
+                <div class="text-lg font-bold">{{ day.date.strftime('%d') }}</div>
+                <div class="text-xs">{{ day.date.strftime('%b') }}</div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Prayer Times Tables -->
+    <div class="bg-white rounded-lg shadow-lg p-6">
+        {% for day in dates %}
+        <div id="date-{{ day.date.strftime('%Y-%m-%d') }}" class="prayer-date {% if loop.index0 > 0 %}hidden{% endif %}">
+            <h2 class="text-2xl font-bold text-blue-800 mb-4 text-center">
+                {{ day.date.strftime('%A, %B %d, %Y') }}
+            </h2>
+            
+            {% if day.prayer_times %}
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200">
+                    <thead>
+                        <tr>
+                            <th class="py-3 px-4 bg-blue-50 text-left text-xs font-medium text-gray-600 uppercase tracking-wider border-b">Prayer</th>
+                            <th class="py-3 px-4 bg-blue-50 text-left text-xs font-medium text-gray-600 uppercase tracking-wider border-b">Time</th>
+                            <th class="py-3 px-4 bg-blue-50 text-left text-xs font-medium text-gray-600 uppercase tracking-wider border-b">Iqamah</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        {% for name, key in [('Fajr', 'fajr'), ('Sunrise', 'sunrise'), ('Dhuhr', 'dhuhr'), ('Asr', 'asr'), ('Maghrib', 'maghrib'), ('Isha', 'isha')] %}
+                            {% if key in day.prayer_times %}
+                            <tr>
+                                <td class="py-4 px-4 text-sm font-medium text-gray-900">{{ name }}</td>
+                                {% if key == 'sunrise' %}
+                                    <td class="py-4 px-4 text-sm text-gray-500">{{ day.prayer_times[key] }}</td>
+                                    <td class="py-4 px-4 text-sm text-gray-500">-</td>
+                                {% else %}
+                                    <td class="py-4 px-4 text-sm text-gray-500">{{ day.prayer_times[key].time }}</td>
+                                    <td class="py-4 px-4 text-sm text-gray-500">{{ day.prayer_times[key].iqamah or '-' }}</td>
+                                {% endif %}
+                            </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="text-center text-gray-600 py-8">
+                <p>Prayer times not available for this date.</p>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div class="mt-6 text-center">
+        <a href="/" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition">
+            Back to Home
+        </a>
+        {% if mosque %}
+        <a href="/mosque/{{ mosque.id }}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition ml-4">
+            Mosque Details
+        </a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function activateTab(clickedTab, dateId) {
+        // Update tab styles
+        document.querySelectorAll('.date-tab').forEach(tab => {
+            tab.classList.remove('active', 'text-white');
+            tab.classList.add('bg-white', 'text-gray-800', 'hover:bg-blue-50');
+        });
+        
+        clickedTab.classList.remove('bg-white', 'text-gray-800', 'hover:bg-blue-50');
+        clickedTab.classList.add('active', 'text-white');
+        
+        // Show the selected date's content
+        document.querySelectorAll('.prayer-date').forEach(content => {
+            content.classList.add('hidden');
+        });
+        document.getElementById('date-' + dateId).classList.remove('hidden');
+    }
+    
+    // Auto-scroll to the relevant date tab on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        // If URL has a hash, we can use it to navigate to the right tab
+        const hash = window.location.hash;
+        if (hash && hash.startsWith('#date-')) {
+            const dateId = hash.substring(6); // Remove '#date-'
+            const tab = document.querySelector('[onclick*="' + dateId + '"]');
+            if (tab) {
+                activateTab(tab, dateId);
+                tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+        }
+    });
+</script>
+{% endblock %} 

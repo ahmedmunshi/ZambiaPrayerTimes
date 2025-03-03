@@ -1,0 +1,168 @@
+{
+  "mosque_id": "masjid-al-noor",
+  "name": "Masjid Al-Noor",
+  "address": "456 Islam Road, Kitwe, Zambia",
+  "prayer_times": {
+    "2025-03-03": {
+      "fajr": {
+        "time": "5:42",
+        "iqamah": "5:52"
+      },
+      "sunrise": "6:49",
+      "dhuhr": {
+        "time": "12:27",
+        "iqamah": "12:37"
+      },
+      "asr": {
+        "time": "4:25",
+        "iqamah": "4:35"
+      },
+      "maghrib": {
+        "time": "6:05",
+        "iqamah": "6:08"
+      },
+      "isha": {
+        "time": "7:25",
+        "iqamah": "7:35"
+      }
+    },
+    "2025-03-04": {
+      "fajr": {
+        "time": "5:42",
+        "iqamah": "5:52"
+      },
+      "sunrise": "6:49",
+      "dhuhr": {
+        "time": "12:27",
+        "iqamah": "12:37"
+      },
+      "asr": {
+        "time": "4:25",
+        "iqamah": "4:35"
+      },
+      "maghrib": {
+        "time": "6:05",
+        "iqamah": "6:08"
+      },
+      "isha": {
+        "time": "7:25",
+        "iqamah": "7:35"
+      }
+    },
+    "2025-03-05": {
+      "fajr": {
+        "time": "5:43",
+        "iqamah": "5:53"
+      },
+      "sunrise": "6:50",
+      "dhuhr": {
+        "time": "12:28",
+        "iqamah": "12:38"
+      },
+      "asr": {
+        "time": "4:26",
+        "iqamah": "4:36"
+      },
+      "maghrib": {
+        "time": "6:06",
+        "iqamah": "6:09"
+      },
+      "isha": {
+        "time": "7:26",
+        "iqamah": "7:36"
+      }
+    },
+    "2025-03-06": {
+      "fajr": {
+        "time": "5:43",
+        "iqamah": "5:53"
+      },
+      "sunrise": "6:50",
+      "dhuhr": {
+        "time": "12:28",
+        "iqamah": "12:38"
+      },
+      "asr": {
+        "time": "4:26",
+        "iqamah": "4:36"
+      },
+      "maghrib": {
+        "time": "6:06",
+        "iqamah": "6:09"
+      },
+      "isha": {
+        "time": "7:26",
+        "iqamah": "7:36"
+      }
+    },
+    "2025-03-07": {
+      "fajr": {
+        "time": "5:44",
+        "iqamah": "5:54"
+      },
+      "sunrise": "6:51",
+      "dhuhr": {
+        "time": "12:29",
+        "iqamah": "12:39"
+      },
+      "asr": {
+        "time": "4:27",
+        "iqamah": "4:37"
+      },
+      "maghrib": {
+        "time": "6:07",
+        "iqamah": "6:10"
+      },
+      "isha": {
+        "time": "7:27",
+        "iqamah": "7:37"
+      }
+    },
+    "2025-03-08": {
+      "fajr": {
+        "time": "5:44",
+        "iqamah": "5:54"
+      },
+      "sunrise": "6:51",
+      "dhuhr": {
+        "time": "12:29",
+        "iqamah": "12:39"
+      },
+      "asr": {
+        "time": "4:27",
+        "iqamah": "4:37"
+      },
+      "maghrib": {
+        "time": "6:07",
+        "iqamah": "6:10"
+      },
+      "isha": {
+        "time": "7:27",
+        "iqamah": "7:37"
+      }
+    },
+    "2025-03-09": {
+      "fajr": {
+        "time": "5:45",
+        "iqamah": "5:55"
+      },
+      "sunrise": "6:52",
+      "dhuhr": {
+        "time": "12:30",
+        "iqamah": "12:40"
+      },
+      "asr": {
+        "time": "4:28",
+        "iqamah": "4:38"
+      },
+      "maghrib": {
+        "time": "6:08",
+        "iqamah": "6:11"
+      },
+      "isha": {
+        "time": "7:28",
+        "iqamah": "7:38"
+      }
+    }
+  }
+}
