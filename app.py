@@ -55,7 +55,8 @@ def home():
     if prayer_times:
         next_prayer = get_next_prayer(prayer_times)
         if next_prayer:
-            countdown = calculate_countdown(next_prayer['time'])
+            tomorrow = next_prayer.get('tomorrow', False)
+            countdown = calculate_countdown(next_prayer['time'], tomorrow)
     
     # Find selected mosque info
     selected_mosque = next((m for m in mosques if m['id'] == mosque_id), None)
@@ -68,6 +69,7 @@ def home():
                           hijri_date=hijri_date,
                           mosque=selected_mosque,
                           mosques=mosques,
+                          selected_mosque_id=mosque_id,
                           prayer_times=prayer_times,
                           next_prayer=next_prayer,
                           countdown=countdown)
@@ -90,6 +92,8 @@ def mosque_details(mosque_id):
     
     return render_template('mosque.html', 
                           mosque=mosque,
+                          mosques=mosques,
+                          selected_mosque_id=mosque_id,
                           prayer_times=prayer_times,
                           date=datetime.now(),
                           hijri_date=hijri_date)
@@ -103,6 +107,7 @@ def schedule():
         return render_template('schedule.html', 
                               mosque=None,
                               mosques=[],
+                              selected_mosque_id=None,
                               dates=[])
     
     # Get selected mosque (from query param or default to first)
@@ -133,6 +138,7 @@ def schedule():
     return render_template('schedule.html',
                           mosque=selected_mosque,
                           mosques=mosques,
+                          selected_mosque_id=mosque_id,
                           dates=dates)
 
 @app.route('/api/prayer-times/<mosque_id>/<date>')
@@ -195,5 +201,5 @@ if __name__ == '__main__':
     update_prayer_times_with_current_dates()
     
     # Use environment variables for port if available (for deployment)
-    port = int(os.environ.get('PORT', 5000))
+    port = int(os.environ.get('PORT', 8081))
     app.run(host='0.0.0.0', port=port, debug=False if os.environ.get('PRODUCTION') else True) 

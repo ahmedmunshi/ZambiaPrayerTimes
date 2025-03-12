@@ -1,12 +1,12 @@
 [
   {
-    "id": "mecca-islamic-center",
-    "name": "Mecca Islamic Center",
+    "id": "ghausia-mosque-1",
+    "name": "Ghausia Mosque 1",
     "address": "123 Example St, Lusaka, Zambia",
     "city": "Lusaka",
     "phone": "+260 97 1234567",
-    "email": "info@meccaislamiccenter.zm",
-    "website": "http://meccaislamiccenter.zm",
+    "email": "info@ghausiamosque1.zm",
+    "website": "http://ghausiamosque1.zm",
     "coordinates": {
       "latitude": -15.3875259,
       "longitude": 28.3228303
@@ -14,13 +14,13 @@
     "features": ["Prayer Hall", "Wudu Area", "Library", "Classes"]
   },
   {
-    "id": "masjid-al-noor",
-    "name": "Masjid Al-Noor",
+    "id": "ghausia-mosque-2",
+    "name": "Ghausia Mosque 2",
     "address": "456 Islam Road, Kitwe, Zambia",
     "city": "Kitwe",
     "phone": "+260 96 7654321",
-    "email": "info@masjidalnoor.zm",
-    "website": "http://masjidalnoor.zm",
+    "email": "info@ghausiamosque2.zm",
+    "website": "http://ghausiamosque2.zm",
     "coordinates": {
       "latitude": -12.8156023,
       "longitude": 28.2054832
@@ -28,13 +28,13 @@
     "features": ["Prayer Hall", "Wudu Area", "Islamic School"]
   },
   {
-    "id": "islamic-center-ndola",
-    "name": "Islamic Center of Ndola",
+    "id": "ghausia-mosque-3",
+    "name": "Ghausia Mosque 3",
     "address": "789 Muslim Street, Ndola, Zambia",
     "city": "Ndola",
     "phone": "+260 95 1122334",
-    "email": "contact@icndola.zm",
-    "website": "http://icndola.zm",
+    "email": "contact@ghausiamosque3.zm",
+    "website": "http://ghausiamosque3.zm",
     "coordinates": {
       "latitude": -13.0035026,
       "longitude": 28.6365461

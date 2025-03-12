@@ -64,7 +64,7 @@
             <div class="inline-block relative w-full max-w-md">
                 <select onchange="window.location.href='?mosque_id=' + this.value" class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
                     {% for mosque in mosques %}
-                    <option value="{{ mosque.id }}" {% if mosque.id == (mosque.id if mosque is defined else '') %}selected{% endif %}>
+                    <option value="{{ mosque.id }}" {% if mosque.id == selected_mosque_id %}selected{% endif %}>
                         {{ mosque.name }}
                     </option>
                     {% endfor %}
